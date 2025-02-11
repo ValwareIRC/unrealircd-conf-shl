@@ -20,8 +20,6 @@ Search for UnrealIRCd Config Syntax Highlighter.
 
 Click on Install to add it to your VSCode.
 
-Alternatively, you can install it from the Marketplace via this link.
-
 Usage
 
 Open or create a .conf file.
