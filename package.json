@@ -1,0 +1,26 @@
+{
+  "name": "unrealircd-conf-shl",
+  "displayName": "unrealircd-conf-shl",
+  "description": "unrealircd.conf syntax highlighter",
+  "version": "0.0.1",
+  "publisher": "Valware",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "unrealircd",
+      "aliases": ["UnrealIRCd Config", "unrealircd"],
+      "extensions": [".conf"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "unrealircd",
+      "scopeName": "source.unrealircd",
+      "path": "./syntaxes/unrealircd.tmLanguage.json"
+    }]
+  }
+}

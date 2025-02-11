@@ -1,0 +1,99 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "UnrealIRCd Config",
+    "patterns": [
+        {
+            "match": "\\b(include|loadmodule|log|set|me|admin|allow|oper|operclass|listen|ban|except|deny|vhost|alias|helpop|spamfilter|network|class|whowas|drpass|ulines|link|tld|require|blacklist|secret|webirc|security-group|rpc-user)\\b",
+            "name": "keyword.control.unrealircd"
+        },
+        {
+            "match": "\\b(server|rpc-class|sid|info|anti-flood|name|ip|port|password|flags|options|mask|reason|file|motd|rules|botmotd|opermotd|help|channel|user|host|realname|ssl|fingerprint|maxchannels|maxchannelsperuser|maxusers|maxunknown|maxperip|rule|parent|permissions|restart|die|destination|soft|filename|maxperhost|pingfreq|connfreq|maxclients|sendq|recvq|nofakelag|global-maxperip|redirect-server|redirect-port|tls|useip|noident|reject-on-auth-failure|spoof-ip|mode|tls-options|clientsonly|serversonly|rpc|websocket|certificate|key|swhois|auto-login|snomask|server-notice-colors|server-notice-show-event|require-modes|maxlogins|auto-join|class|match)\\b",
+            "name": "entity.name.type.unrealircd"
+        },
+        {
+            "match": "\\b(yes|no|on|off|true|false)\\b",
+            "name": "constant.language.boolean.unrealircd"
+        },
+        {
+            "match": "\\b([0-9]+)\\b",
+            "name": "constant.numeric.unrealircd"
+        },
+        {
+            "match": "\"[^\"]*\"|'[^']*'",
+            "name": "string.quoted.unrealircd"
+        },
+        {
+            "match": "(//|#).*",
+            "name": "comment.line.unrealircd"
+        },
+        {
+            "begin": "/\\*",
+            "end": "\\*/",
+            "name": "comment.block.unrealircd",
+            "patterns": [
+                {
+                    "match": "\\*\\s*.*",
+                    "name": "comment.block.unrealircd"
+                }
+            ]
+        },
+        {
+            "begin": "\\b(listen)\\b",
+            "end": "\\}",
+            "name": "meta.block.listen.unrealircd",
+            "patterns": [
+                {
+                    "include": "#block-content"
+                }
+            ]
+        },
+        {
+            "begin": "\\b(me|admin|class|allow|oper|rpc-user|link|ulines|drpass|log|include|ban|except|deny|vhost|blacklist|set)\\b",
+            "end": "\\}",
+            "name": "meta.block.unrealircd",
+            "patterns": [
+                {
+                    "include": "#block-content"
+                }
+            ]
+        }
+    ],
+    "repository": {
+        "block-content": {
+            "patterns": [
+                {
+                    "match": "\\b(ip|port|options|type|match|rpc-class|password|mask|class|maxperip|pingfreq|maxclients|sendq|recvq|tls|serversonly|auto-login|snomask|server-notice-colors|server-notice-show-event|require-modes|maxlogins|auto-join|destination|soft|filename|rule|parent|permissions|restart|die|nofakelag|global-maxperip|redirect-server|redirect-port|useip|noident|reject-on-auth-failure|spoof-ip|mode|tls-options|clientsonly|serversonly|certificate|key|swhois|vhost|auto-login|snomask|server-notice-colors|server-notice-show-event|require-modes|maxlogins|auto-join)\\b",
+                    "name": "entity.name.type.unrealircd"
+                },
+                {
+                    "match": "\\b(yes|no|on|off|true|false)\\b",
+                    "name": "constant.language.boolean.unrealircd"
+                },
+                {
+                    "match": "\\b([0-9]+)\\b",
+                    "name": "constant.numeric.unrealircd"
+                },
+                {
+                    "match": "\"[^\"]*\"|'[^']*'",
+                    "name": "string.quoted.unrealircd"
+                },
+                {
+                    "match": "(//|#).*",
+                    "name": "comment.line.unrealircd"
+                },
+                {
+                    "begin": "/\\*",
+                    "end": "\\*/",
+                    "name": "comment.block.unrealircd",
+                    "patterns": [
+                        {
+                            "match": "\\*\\s*.*",
+                            "name": "comment.block.unrealircd"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "scopeName": "source.unrealircd"
+}
