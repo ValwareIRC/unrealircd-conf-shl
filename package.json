@@ -1,6 +1,6 @@
 {
   "name": "unrealircd-conf-shl",
-  "displayName": "UnrealIRCd Configuration File Syntax Highlighter",
+  "displayName": "UnrealIRCd Configuration File Syntax Highlighter (Unofficial)",
   "description": "Syntax highlighting for UnrealIRCd configuration files (*.conf).",
   "version": "1.0.0",
   "publisher": "Valware",
@@ -23,5 +23,6 @@
       "path": "./syntaxes/unrealircd.tmLanguage.json"
     }]
   },
-  "repository": "https://github.com/ValwareIRC/unrealircd-conf-shl"
+  "repository": "https://github.com/ValwareIRC/unrealircd-conf-shl",
+  "icon": "images/8283449.png"
 }
