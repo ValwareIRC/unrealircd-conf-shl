@@ -47,11 +47,19 @@
   "icon": "images/8283449.png",
   "devDependencies": {
     "@types/node": "^22.13.7",
-    "typescript": "^5.7.3",
-    "vscode": "^1.1.34"
+    "@types/vscode": "^1.1.34",
+    "@vscode/test-electron": "^1.1.34",
+    "mocha": "^10.0.0",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "axios": "^1.8.1",
-    "cheerio": "^1.0.0"
+    "cheerio": "^1.0.0",
+    "glob": "^11.0.1",
+    "lru-cache": "^7.18.3",
+    "minimatch": "^3.0.5",
+    "minimist": "^1.2.5",
+    "mkdirp": "^1.0.4",
+    "rimraf": "^4.4.1"
   }
 }
