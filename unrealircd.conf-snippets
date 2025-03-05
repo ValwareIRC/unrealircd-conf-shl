@@ -1,0 +1,496 @@
+{
+    "Set Block": {
+        "prefix": "set",
+        "body": [
+            "set {",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a set block with cursor positioned inside"
+    },
+    "Oper Block": {
+        "prefix": "oper",
+        "body": [
+            "/* Oper block for giving people special privileges on this server */",
+            "oper $1 {",
+            "    mask { $2; }",
+            "    operclass $3;",
+            "    class opers;",
+            "    $0",
+            "",
+            "    // Optional",
+            "    #auto-login yes;",
+            "    #password \"secretpass123\";",
+            "    #require-modes \"r\";",
+            "    #max-logins 3;",
+            "    #vhost netadmin.example.org;",
+            "    #swhois \"is a boss\";",
+            "    #modes \"X\";",
+            "    #snomask \"j\";",
+            "    #server-notice-colors yes;",
+            "    #server-notice-show-event no;",
+            "}"
+        ],
+        "description": "Creates an oper block with cursor positioned at the oper name."
+    },
+    "Log Block": {
+        "prefix": "log",
+        "body": [
+            "/* Log block for logging server notices */",
+            "log {",
+            "    // See here for a list of sources: https://www.unrealircd.org/docs/Log_sources",
+            "    source {",
+            "        $1;",
+            "    }",
+            "",
+            "    // Can be a file, a channel or syslog
+            "    destination {",
+            "        $0;",
+            "    }",
+            "}"
+        ],
+        "description": "Creates a log block with cursor positioned at the source."
+    },
+    "Operclass Block": {
+        "prefix": "operclass",
+        "body": [
+            "/* Operclass block for defining a set of oper permissions */",
+            "operclass $1 {",
+            "    // Uncomment the following line to inherit permissions from netadmin",
+            "    // Change \"netadmin\" to the operclass to inherit from",
+            "    #parent netadmin;",
+            "",
+            "    // See here for a list of permissions: https://www.unrealircd.org/docs/Operclass_permissions",
+            "    permissions {",
+            "        $0;",
+            "    }",
+            "}"
+        ],
+        "description": "Creates an operclass block with cursor positioned at the name."
+    },
+    "Listen Block": {
+        "prefix": "listen",
+        "body": [
+            "/* Listen block for listening for incoming connections from users/servers/applications */",
+            "listen {",
+            "    ip $1;",
+            "    port $2;",
+            "    options {",
+            "        $0;",
+            "    }",
+            "}"
+        ],
+        "description": "Creates a listen block with cursor positioned at the ip."
+    },
+    "RPC User Block": {
+        "prefix": "rpc-user",
+        "body": [
+            "/* RPC User block for allowing other applications to interface with UnrealIRCd */",
+            "rpc-user $1 {",
+            "    mask { ip $2; }",
+            "    rpc-class $3;",
+            "    password \"$0\";",
+            "}"
+        ],
+        "description": "Creates an rpc-user block with cursor positioned at the name."
+    },
+    "Spamfilter Block": {
+        "prefix": "spamfilter",
+        "body": [
+            "/* Spamfilter block for detecting bad words and phrases */",
+            "spamfilter {",
+            "    match-type $1;",
+            "    target {",
+            "        $2",
+            "    }",
+            "    action $3;",
+            "    ban-time $4;",
+            "    reason \"$5\";",
+            "    match \"$0\";",
+            "}"
+        ],
+        "description": "Creates a spamfilter block with cursor positioned at the match-type."
+    },
+    "Blacklist Block": {
+        "prefix": "blacklist",
+        "body": [
+            "/* Blacklist block to choose which DNS blacklist to use and how */",
+            "blacklist $1 {",
+            "    dns {",
+            "        name $2;",
+            "        type $3;",
+            "        reply { 1; 2; 3; 4; 5; 6; } // See the DNSBL vendor for information on record numbers",
+            "    }",
+            "    action $4;",
+            "    ban-time $0;",
+            "    reason \"Proxy/Drone detected.\";",
+            "}"
+        ], 
+        "description": "Creates a blacklist block with cursor positioned at the name."
+    },
+    "Link Block": {
+        "prefix": "link",
+        "body": [
+            "/* Link block to link with another server */",
+            "link $1 {",
+            "    incoming {",
+            "        mask $2; // Mask item, see https://www.unrealircd.org/docs/Mask_item",
+            "    }",
+            "    outgoing {",
+            "        bind-ip $3;",
+            "        hostname $4;",
+            "        port $5;",
+            "        options { tls; autoconnect; }",
+            "    }",
+            "    password \"$0\"; // Recommend to use the SPKIFP instead of plaintext password",
+            "}"
+        ],
+        "description": "Creates a link block with cursor positioned at the name."
+    },
+    "ULines Block": {
+        "prefix": "ulines",
+        "body": [
+            "/* ULines block to define servers that are trusted and have special privileges */",
+            "ulines {",
+            "    $1;",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a ulines block with cursor positioned at the server."
+    },
+    "Badword Block": {
+        "prefix": "badword",
+        "body": [
+            "/* Badword block to define words that are not allowed in +G users/channels */",
+            "badword $1 {",
+            "    word \"$2\";",
+            "    action $3;",
+            "    replace $4;",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a badword block with cursor positioned at the word."
+    },
+    "Allow Channel Block": {
+        "prefix": "allow",
+        "body": [
+            "/* Allow Channel block to define channels that are allowed */",
+            "allow channel {",
+            "    channel \"$1\";",
+            "",
+            "    // Optional; Uncomment to allow only the mask criteria",
+            "    #mask { security-group known-users; }",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates an allow channel block with cursor positioned at the channel."
+    },
+    "Deny Channel Block": {
+        "prefix": "deny",
+        "body": [
+            "/* Deny Channel block to define channels that are not allowed */",
+            "deny channel {",
+            "    channel \"$1\";",
+            "    reason \"$2\";",
+            "",
+            "    // Optional; Uncomment to use",
+            "    #redirect \"#help\";",
+            "    #mask { security-group unknown-users; }",
+            "    #warn on;",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a deny channel block with cursor positioned at the name."
+    },
+    "Except Ban Block": {
+        "prefix": "except",
+        "body": [
+            "/* Except Ban block to define exceptions to bans */",
+            "except ban {",
+            "    mask \"$1\";",
+            "",
+            "    // Optional: Uncomment to use, see https://www.unrealircd.org/docs/Configuration#Except_ban_block
+            "    #type { }
+            "    $0",
+            "}"
+        ],
+        "description": "Creates an except ban block with cursor positioned at the mask."
+    },
+    "Ban Server Block": {
+        "prefix": "ban",
+        "body": [
+            "/* Ban Server block to define servers that are banned */",
+            "ban server {",
+            "    mask \"$1\";",
+            "    reason \"$2\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a ban server block with cursor positioned at the mask."
+    },
+    "Ban Realname Block": {
+        "prefix": "ban",
+        "body": [
+            "/* Ban Realname block to define realnames that are banned */",
+            "ban-realname {",
+            "    mask \"$1\";",
+            "    reason \"$2\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a ban realname block with cursor positioned at the mask."
+    },
+    "Ban Nick Block": {
+        "prefix": "ban",
+        "body": [
+            "/* Ban Nick block to define nicknames that are banned */",
+            "ban nick {",
+            "    mask \"$1\";",
+            "    reason \"$2\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a ban nick block with cursor positioned at the mask."
+    },
+    "Ban IP Block": {
+        "prefix": "ban",
+        "body": [
+            "/* Ban IP block to define IP addresses that are banned */",
+            "ban ip {",
+            "    mask \"$1\";",
+            "    reason \"$2\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a ban ip block with cursor positioned at the mask."
+    },
+    "Except Throttle Block": {
+        "prefix": "except",
+        "body": [
+            "/* Except Throttle block to define exceptions to connection throttling */",
+            "except throttle {",
+            "    mask \"$1\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates an except throttle block with cursor positioned at the mask."
+    },
+    "Deny DCC Block": {
+        "prefix": "deny",
+        "body": [
+            "/* Deny DCC block to define DCC actions that are denied */",
+            "deny dcc {",
+            "    filename \"$1\";",
+            "    reason \"$2\";",
+            "",
+            "    // Optional",
+            "    #soft yes;",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a deny dcc block with cursor positioned at the mask."
+    },
+    "Allow DCC Block": {
+        "prefix": "allow",
+        "body": [
+            "/* Allow DCC block to define DCC actions that are allowed */",
+            "allow dcc {",
+            "    filename \"$1\";",
+            "",
+            "    // Optional",
+            "    #soft yes;
+            "    $0",
+            "}"
+        ],
+        "description": "Creates an allow dcc block with cursor positioned at the mask."
+    },
+    "Me Block": {
+        "prefix": "me",
+        "body": [
+            "/* Me block to define the server's name and information */",
+            "me {",
+            "    name \"$1\";",
+            "    info \"$2\";",
+            "    sid \"$3\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a me block with cursor positioned at the name."
+    },
+    "Admin Block": {
+        "prefix": "admin",
+        "body": [
+            "/* Admin block to define the server's administrators */",
+            "admin {",
+            "    \"$1\";",
+            "    \"$2\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates an admin block with cursor positioned at the name."
+    },
+    "Class Block": {
+        "prefix": "class",
+        "body": [
+            "/* Class block to define connection classes */",
+            "class $1 {",
+            "    pingfreq $2;",
+            "    connfreq $3;",
+            "    maxclients $3;",
+            "    sendq $4;",
+            "    recvq $5;",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a class block with cursor positioned at the name."
+    },
+    "Vhost Block": {
+        "prefix": "vhost",
+        "body": [
+            "/* Vhost block to define virtual hosts */",
+            "vhost {",
+            "    auto-login yes;
+            "    mask { $1 }; // Mask item",
+            "    vhost $2;",
+            "",
+            "    // Optional",
+            "    #login \"\"";
+            "    #password \"\"";
+            "    #swhois  \"is awesome!\"";
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a vhost block with cursor positioned at the vhost."
+    },
+    "Security Group Block": {
+        "prefix": "security-group",
+        "body": [
+            "/* Security Group block to define security groups */",
+            "security-group $1 {",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a security-group block with cursor positioned at the name."
+    },
+    "Loadmodule Directive": {
+        "prefix": "loadmodule",
+        "body": [
+            "/* Loadmodule directive to load a module */",
+            "loadmodule \"$1\";",
+            "$0"
+        ],
+        "description": "Creates a loadmodule directive with cursor positioned at the module name."
+    },
+    "Include Directive": {
+        "prefix": "include",
+        "body": [
+            "/* Include directive to include another configuration file */",
+            "include \"$1\";",
+            "$0"
+        ],
+        "description": "Creates an include directive with cursor positioned at the file name."
+    },
+    "Require Module Block": {
+        "prefix": "require",
+        "body": [
+            "/* Require Module block to require a module */",
+            "require module {",
+            "    name \"$1\";",
+            "",
+            "    // Optional",
+            "    #min-version 1.0;",
+            "}",
+            "$0"
+        ],
+        "description": "Creates a require-module block with cursor positioned at the module name."
+    },
+    "Require Authentication Block": {
+        "prefix": "require",
+        "body": [
+            "/* Require Authentication block to require authentication */",
+            "require authentication {",
+            "    mask { $1; }",
+            "    reason \"$2\"",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a require-authentication block with cursor positioned at the mask."
+    },
+    "Help Block": {
+        "prefix": "help",
+        "body": [
+            "/* Help block to define help topics for commands */",
+            "help $1 {",
+            "    \"$2\";",
+            "    \"$3\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a help block with cursor positioned at the name."
+    },
+    "Alias Block": {
+        "prefix": "alias",
+        "body": [
+            "/* Alias block to define command aliases */",
+            "alias $1 {",
+            "    type $2;",
+            "    target \"$3\";",
+            "    spamfilter no;",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates an alias block with cursor positioned at the name."
+    },
+    "WebIRC Block": {
+        "prefix": "webirc",
+        "body": [
+            "/* WebIRC block to define WebIRC settings */",
+            "webirc {",
+            "    mask \"$1\";",
+            "    password \"$2\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a webirc block with cursor positioned at the mask."
+    },
+    "DRpass Block": {
+        "prefix": "drpass",
+        "body": [
+            "/* DRpass block to define DRpass settings */",
+            "drpass {",
+            "    restart \"$1\";",
+            "    die \"$2\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a drpass block with cursor positioned at the mask."
+    },
+    "Proxy Block": {
+        "prefix": "proxy",
+        "body": [
+            "/* Proxy block to define proxy settings */",
+            "proxy $1 {",
+            "    type $2;",
+            "    mask { $3; }",
+            "    password \"$4\";",
+            "    $0",
+            "}"
+        ],
+        "description": "Creates a proxy block with cursor positioned at the name."
+    },
+    "Sni Block": {
+        "prefix": "sni",
+        "body": [
+            "/* Sni block to define SNI settings */",
+            "sni $1 {",
+            "    tls-options {",
+            "        certificate \"$2\";",
+            "        key \"$3\";",
+            "    }",
+            "}",
+            "$0"
+
+        ],
+        "description": "Creates an sni block with cursor positioned at the name."
+    }
+}

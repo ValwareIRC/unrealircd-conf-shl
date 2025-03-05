@@ -1,9 +1,11 @@
 # Change Log
 
-All notable changes to the "unrealircd-conf-shl" extension will be documented in this file.
+## [1.1.0] March 2025
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- Improved syntax highlighting
+- Documentation popovers when hovering over keywords
+- Configuration block Snippets with Tabstops
 
-## [Unreleased]
+## [1.0.0] Jan 2025
 
 - Initial release
